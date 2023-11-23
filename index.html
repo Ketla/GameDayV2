@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GameDay Baby</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>GameDay</h2>
+        <form id="playerInputForm">
+            <div class="input-field">
+                <label for="playerName">Player Name:</label>
+                <input type="text" id="playerName" name="playerName" required>
+            </div>
+            <!-- Hidden input for ELO Rating -->
+            <button type="submit">Add Player</button>
+        </form>
+        <div id="playerList">
+            <!-- Player list will be populated here -->
+        </div>
+    <div>
+      <button id="startGameButton" class="start-game-btn">Start Game</button>
+    </div>
+        <footer class="footer">
+          <div id="totalPlayers" class="total-players">Total Players: 0</div>
+          <button id="clearLocalStorageButton">Clear Local Storage</button>
+      </footer>
+    </div>
+    <script src="script/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex; /* New added rule */
+  flex-direction: column; /* New added rule */
+}
+
+.container {
+  width: 80%; /* Adjusted for a narrower container */
+  margin: auto;
+  overflow: hidden;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.input-field {
+  margin-bottom: 15px;
+  text-align: center; /* Center the input field */
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 50%; /* Adjusted width */
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+}
+
+button {
+  display: block;
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  width: 50%; /* Adjusted width */
+  margin: auto; /* Center the button */
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#playerList {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  bottom: 0;
+  width: 100%;
+}
+
+.total-players {
+  font-size: 1.2em;
+}
+
+.player-item {
+  display: flex;
+  align-items: center; /* Aligns the text and button vertically */
+  justify-content: space-between; /* Puts space between the text and button */
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 3px 6px; /* Smaller padding for a smaller button */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em; /* Smaller font size */
+}
+
+.delete-btn:hover {
+  background-color: #ff3333;
+}
+
+.start-game-btn {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+.start-game-btn:hover {
+  background-color: #45a049;
+}
+
+.back-btn {
+  background-color: pink;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: #45a049;
+}
+
+.go-live-btn {
+  background-color: #008CBA; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+.teams-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the team containers */
+  align-items: flex-start; /* Align items to the start of the cross axis */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.team h2 {
+  text-align: center;
+  color: #333;
+}
+
+.team ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+/* Common styles for both teams */
+.team li {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Specific background colors for each team */
+#team1-list li {
+  background-color: #ff6666; /* Red background for Team 1 */
+}
+
+#team2-list li {
+  background-color: #ffff66; /* Yellow background for Team 2 */
+}
+
+
+.team li span {
+  margin-right: 10px; /* Add space to the right of each span */
+}
+
+.team li input[type="text"],
+.team li input[type="number"] {
+  padding: 5px;
+  margin-left: 5px; /* Space before input fields */
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+/* If you want the goals and assists to be labeled in-line with the input */
+.team li span input {
+  display: inline-block; /* Align input with inline text */
+  width: auto; /* Let the input grow as needed */
+  margin: 0 5px; /* Margin on both sides */
+}
+
+
+
+#endMatchButton {
+  background-color: #008CBA; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  font-size: xx-large;
+}
+
+#endMatchButton:hover {
+  background-color: #007B9A;
+}
+
+.team:nth-child(1) {
+  background-color: #ff6666; /* Red */
+}
+
+.team:nth-child(2) {
+  background-color: #ffff66; /* Yellow */
+}
+
+#randomizeNewMatchButton {
+  background-color: #008CBA; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}

@@ -1,0 +1,43 @@
+.scoreboard {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.teams-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.team {
+  width: 45%; /* Adjust the width as necessary */
+}
+
+.team h2 {
+  margin-bottom: 10px;
+}
+
+.team ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.team li {
+  background-color: #e6e6e6;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Specific colors for the team headings */
+.team1 h2 {
+  color: #ff6666; /* Red for Team 1 */
+}
+
+.team2 h2 {
+  color: #ffff66; /* Yellow for Team 2 */
+}
+
+/* ... other styles ... */

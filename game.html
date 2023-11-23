@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Game Page Setup</h2>
+        <label for="matchFormatSelect">Select Match Format:</label>
+        <select id="matchFormatSelect"></select>
+
+        <div id="matchInfo">
+            <p>Players Playing: <span id="playersPlaying"></span></p>
+            <p>Players Benched: <span id="playersBenched"></span></p>
+            <p>AFK Players: <span id="afkPlayers"></span></p>
+        </div>
+    </div>
+
+    <div>
+      <button id="goLiveButton" class="go-live-btn">GO LIVE!</button>
+    </div>
+
+    <!-- Footer with back button -->
+    <footer class="footer">
+        <button id="backButton" class="back-btn">&#8592; Back</button>
+    </footer>
+
+    <script src="script/game.js"></script>
+</body>
+</html>
