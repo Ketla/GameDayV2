@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCORECARD</title>
+    <link rel="stylesheet" href="scorecard.css">
+</head>
+<body>
+    <div class="scorecard-container">
+        <h2>SCORECARD</h2>
+        <table id="scorecard">
+            <thead>
+                <tr>
+                  <th id="thRank">Rank</th>
+                  <th id="thName">Name</th>
+                  <th id="thScore">Score</th>
+                  <th id="thWins">Wins</th>
+                  <th id="thDraws">Draws</th>
+                  <th id="thLosses">Losses</th>
+                  <th id="thTotalGoals">Total Goals</th>
+                  <th id="thTotalAssists">Total Assists</th>
+                  <th id="thMatchesPlayed">Matches Played</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Player rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <div class="top-scorers">
+        <h3>Top Goal Scorers</h3>
+        <table id="topGoalScorersTable">
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Goals</th>
+                <th>Assists (Tiebreaker)</th>
+            </tr>
+            <!-- Rows for top goal scorers will be inserted here -->
+        </table>
+    </div>
+    
+    <div class="top-assists">
+        <h3>Top Assist Providers</h3>
+        <table id="topAssistsTable">
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Assists</th>
+                <th>Goals (Tiebreaker)</th>
+            </tr>
+            <!-- Rows for top assist providers will be inserted here -->
+        </table>
+    </div>
+    <footer class="footer">
+        <a href="scoreboard.html" class="button-style">&#8592; Back to Game</a>
+
+    </footer>
+    
+    <script src="script/scorecard.js"></script>
+</body>
+</html>

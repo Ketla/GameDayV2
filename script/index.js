@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         name: playerName,
         rating: eloRating,
         afk: false,
+        goalie: false,
         assists: 0,
         goals: 0,
         totalGoals: 0,
@@ -53,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="delete-btn" data-index="${index}">Delete</button>
             <input type="checkbox" class="afk-checkbox" data-index="${index}" ${player.afk ? 'checked' : ''}>
             <label for="afk-checkbox-${index}">AFK</label>
+            <input type="checkbox" class="goalie-checkbox" data-index="${index}" ${player.goalie ? 'checked' : ''}>
+            <label for="goalie-checkbox-${index}">Goalie</label>
         </li>`
     ).join('');
 
@@ -64,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function attachEventListeners() {
     const deleteButtons = document.querySelectorAll('.delete-btn');
     const afkCheckboxes = document.querySelectorAll('.afk-checkbox');
+    const goalieCheckboxes = document.querySelectorAll('.goalie-checkbox');
 
     deleteButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -76,6 +80,12 @@ function attachEventListeners() {
             toggleAFKStatus(this.getAttribute('data-index'));
         });
     });
+
+    goalieCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            toggleGoalieStatus(this.getAttribute('data-index'));
+        });
+    });
 }
 
 function toggleAFKStatus(index) {
@@ -84,11 +94,23 @@ function toggleAFKStatus(index) {
     console.log(players);
 }
 
-function deletePlayer(index) {
-    players.splice(index, 1);
+function toggleGoalieStatus(index) {
+    players[index].goalie = !players[index].goalie;
     localStorage.setItem('players', JSON.stringify(players));
-    displayPlayers();
+    console.log(players);
 }
+
+
+function deletePlayer(index) {
+    let isConfirmed = confirm('Are you sure you want to delete this player?');
+
+    if (isConfirmed) {
+        players.splice(index, 1);
+        localStorage.setItem('players', JSON.stringify(players));
+        displayPlayers();
+    }
+}
+
 
 function updateFooter() {
     const totalPlayersElement = document.getElementById('totalPlayers');
@@ -103,10 +125,21 @@ if (localStorage.getItem('buttonText')) {
 }
 
 startGameButton.addEventListener('click', function() {
-    this.textContent = 'Continue Game';
-    localStorage.setItem('buttonText', 'Continue Game'); // Save the new button text to localStorage
-    window.location.href = 'game.html'; // Navigate to game page
+    // Count the number of players who are goalies
+    const numberOfGoalies = players.filter(player => player.goalie === true).length;
+
+    if (players.length < 2) {
+        alert('You need at least 2 players to start the game.');
+    } else if (numberOfGoalies >= 3) {
+        alert('The game cannot start with more than 2 goalies.');
+    } else {
+        this.textContent = 'Continue Game';
+        localStorage.setItem('buttonText', 'Continue Game'); // Save the new button text to localStorage
+        window.location.href = 'game.html'; // Navigate to the game page
+    }
 });
+
+
 
 const clearLocalStorageButton = document.getElementById('clearLocalStorageButton');
 
@@ -118,6 +151,7 @@ clearLocalStorageButton.addEventListener('click', () => {
         localStorage.removeItem('buttonText');
         localStorage.removeItem('team1');
         localStorage.removeItem('team2');
+        localStorage.removeItem('matchFormat'); 
         playerList.innerHTML = "";
         location.reload();
     } 

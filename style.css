@@ -219,7 +219,8 @@ button:hover {
 #randomizeNewMatchButton {
   background-color: #008CBA; /* Blue background */
   color: white;
-  padding: 10px 20px;
+  padding: 30px 20px;
+  font-size: xx-large;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -229,6 +230,17 @@ button:hover {
 
 #goToScoreboardButton {
   background-color: black; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+#goToScoreCardButton {
+  background-color: purple; /* Blue background */
   color: white;
   padding: 10px 20px;
   border: none;

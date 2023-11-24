@@ -27,8 +27,18 @@ const teamSize = matchFormat;
   localStorage.setItem('team2', JSON.stringify(team2));
 
 displayTeams();
- 
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function randomizeTeams(activePlayers, teamSize) {
+  // Shuffle players to randomize the order
+  shuffleArray(activePlayers);
+  
   // Sort players by the number of matches they have played (ascending order)
   const playersSortedByMatches = activePlayers.sort((a, b) => a.matchesPlayed - b.matchesPlayed);
 
@@ -41,15 +51,30 @@ function randomizeTeams(activePlayers, teamSize) {
 
   let team1 = [], team2 = [];
   let team1Score = 0, team2Score = 0;
+  let goalieAssigned = false; // Track if a goalie has been assigned
 
   playersByScore.forEach(player => {
     let playerScore = calculatePlayerScore(player);
-    if ((team1.length < teamSize && team1Score <= team2Score) || team2.length === teamSize) {
-      team1.push(player);
-      team1Score += playerScore;
+
+    // Check for goalies and ensure they are on different teams
+    if (player.goalie) {
+      if (!goalieAssigned) {
+        team1.push(player);
+        team1Score += playerScore;
+        goalieAssigned = true;
+      } else {
+        team2.push(player);
+        team2Score += playerScore;
+      }
     } else {
-      team2.push(player);
-      team2Score += playerScore;
+      // Assign non-goalie players
+      if ((team1.length < teamSize && team1Score <= team2Score) || team2.length === teamSize) {
+        team1.push(player);
+        team1Score += playerScore;
+      } else {
+        team2.push(player);
+        team2Score += playerScore;
+      }
     }
   });
 
@@ -89,8 +114,6 @@ function displayTeam(teamPlayers, teamListElementId) {
   });
 
 }
-
-
 
 function saveMatchData(teamListElementId, teamArray) {
   // Get the team list element by its ID
@@ -173,38 +196,46 @@ function updateTotalGoalsDisplay() {
 }
 
 document.getElementById('endMatchButton').addEventListener('click', function() {
-  saveMatchData('team1-list', team1);
-  saveMatchData('team2-list', team2);
-
-  updateMainDatabase(team1, team2);
-
-  // Calculate and store total goals for each team
+  // Calculate and store total goals for each team before confirmation
   const team1Goals = team1.reduce((total, player) => total + player.goals, 0);
   const team2Goals = team2.reduce((total, player) => total + player.goals, 0);
-  localStorage.setItem('team1Goals', team1Goals);
-  localStorage.setItem('team2Goals', team2Goals);
 
-  const sortedPlayers = [...players].sort((a, b) => {
-    if (b.wins - a.wins !== 0) {
-      return b.wins - a.wins;
-    } 
-    if (b.draws - a.draws !== 0) {
-      return b.draws - a.draws;
-    }
-    if (b.goals - a.goals !== 0) {
-      return b.totalGoals - a.totalGoals;
-    }
-    return b.totalAssists - a.totalAssists;
-  });
-  
-  localStorage.setItem('players', JSON.stringify(sortedPlayers));
-  
+  // Construct the confirmation message with match result
+  const confirmationMessage = `Are you sure the result is correct? (check with ref)\n\nMatch Result:\nTeam 1 (Red) - ${team1Goals} : ${team2Goals} - Team 2 (Yellow)`;
 
-    // Save teams to localStorage
-    localStorage.setItem('team1', JSON.stringify(team1));
-    localStorage.setItem('team2', JSON.stringify(team2));
+  let isConfirmed = confirm(confirmationMessage);
 
-  window.location.href = 'scoreboard.html';
+  if (isConfirmed) {
+      saveMatchData('team1-list', team1);
+      saveMatchData('team2-list', team2);
+
+      updateMainDatabase(team1, team2);
+
+      // Store the calculated total goals
+      localStorage.setItem('team1Goals', team1Goals);
+      localStorage.setItem('team2Goals', team2Goals);
+
+      const sortedPlayers = [...players].sort((a, b) => {
+          if (b.wins - a.wins !== 0) {
+              return b.wins - a.wins;
+          } 
+          if (b.draws - a.draws !== 0) {
+              return b.draws - a.draws;
+          }
+          if (b.goals - a.goals !== 0) {
+              return b.totalGoals - a.totalGoals;
+          }
+          return b.totalAssists - a.totalAssists;
+      });
+
+      localStorage.setItem('players', JSON.stringify(sortedPlayers));
+
+      // Save teams to localStorage
+      localStorage.setItem('team1', JSON.stringify(team1));
+      localStorage.setItem('team2', JSON.stringify(team2));
+
+      window.location.href = 'scoreboard.html';
+  }
 });
 
 document.getElementById('backButton').addEventListener('click', function() {

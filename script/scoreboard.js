@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'game.html';
 });
 
-
-
+document.getElementById('goToScoreCardButton').addEventListener('click', function() {
+  window.location.href = 'scorecard.html';
+});
 
 
 });

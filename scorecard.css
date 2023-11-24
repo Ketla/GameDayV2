@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.scorecard-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+#thRank {
+  background-color: black; /* Example: Deep green */
+  color: white;
+}
+
+#thName {
+  background-color: purple; /* Example: Deep green */
+  color: white;
+}
+
+#thScore {
+  background-color: blue; /* Example: Deep green */
+  color: white;
+}
+
+#thWins {
+  background-color: green; /* Wins - green */
+  color: white;
+}
+
+#thDraws {
+  background-color: #808080; /* Example: Grey */
+  color: white;
+}
+
+#thLosses {
+  background-color: red; /* Losses - red */
+  color: white;
+}
+
+#thTotalGoals {
+  background-color: #FFD700; /* Example: Gold */
+  color: black;
+}
+
+#thTotalAssists {
+  background-color: orange; /* Example: Dodger blue */
+  color: black;
+}
+
+#thMatchesPlayed {
+  background-color: teal; /* Example: Dark orange */
+  color: white;
+}
+
+
+@media screen and (max-width: 600px) {
+  table {
+      display: block;
+      overflow-x: auto;
+  }
+}
+
+.button-style {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button-style:hover {
+  background-color: #0056b3;
+}
+
