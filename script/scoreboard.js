@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   
     document.getElementById('backButton').addEventListener('click', function() {
-    window.location.href = 'live.html';
+    window.location.href = 'game.html';
 });
   
   // Retrieve total goals from localStorage

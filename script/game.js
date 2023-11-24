@@ -21,13 +21,24 @@ const playersBenchedSpan = document.getElementById('playersBenched');
 const afkPlayersSpan = document.getElementById('afkPlayers');
 
 function populateMatchFormats(playerCount) {
-    matchFormatSelect.innerHTML = '';
+  const savedFormat = localStorage.getItem('matchFormat');  
+  matchFormatSelect.innerHTML = '';
     for (let i = 1; i <= playerCount / 2; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = `${i}v${i}`;
         matchFormatSelect.appendChild(option);
-    }
+
+        // Set the option as selected if it matches the saved format
+        if (i.toString() === savedFormat) {
+          option.selected = true;
+      }
+  }
+
+  // If no format was previously saved, select the last option
+  if (!savedFormat) {
+      matchFormatSelect.value = Math.floor(playerCount / 2);
+  }
 }
 
 function updateMatchInfo() {
@@ -41,6 +52,10 @@ function updateMatchInfo() {
   // Display '0' if there are no AFK players, otherwise list their names
   afkPlayersSpan.textContent = afkPlayers.length === 0 ? '0' : afkPlayers.map(player => player.name).join(', ');
 }
+
+matchFormatSelect.addEventListener('change', function() {
+    localStorage.setItem('matchFormat', matchFormatSelect.value);
+});
 
 populateMatchFormats(activePlayers.length);
 matchFormatSelect.addEventListener('change', updateMatchInfo);

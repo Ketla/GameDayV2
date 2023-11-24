@@ -226,3 +226,14 @@ button:hover {
   display: block;
   margin: 20px auto;
 }
+
+#goToScoreboardButton {
+  background-color: black; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}

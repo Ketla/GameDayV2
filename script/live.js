@@ -77,6 +77,17 @@ function displayTeam(teamPlayers, teamListElementId) {
   }).join('');
 
   teamListElement.innerHTML = playersHTML;
+
+  teamPlayers.forEach(teamPlayer => {
+    const goalInput = document.querySelector(`.input-goals[data-player-id="${teamPlayer.id}"]`);
+    goalInput.addEventListener('input', () => {
+      // Update player's goals on input
+      teamPlayer.goals = parseInt(goalInput.value, 10) || 0;
+      // Update the total goals display
+      updateTotalGoalsDisplay();
+    });
+  });
+
 }
 
 
@@ -152,6 +163,14 @@ function resetPlayerStats(players) {
   });
 }
 
+function updateTotalGoalsDisplay() {
+  const team1TotalGoalsElement = document.getElementById('team1TotalGoals');
+  const team2TotalGoalsElement = document.getElementById('team2TotalGoals');
+  const team1TotalGoals = team1.reduce((total, player) => total + player.goals, 0);
+  const team2TotalGoals = team2.reduce((total, player) => total + player.goals, 0);
+  team1TotalGoalsElement.textContent = team1TotalGoals;
+  team2TotalGoalsElement.textContent = team2TotalGoals;
+}
 
 document.getElementById('endMatchButton').addEventListener('click', function() {
   saveMatchData('team1-list', team1);
@@ -192,6 +211,8 @@ document.getElementById('backButton').addEventListener('click', function() {
   window.location.href = 'game.html';
 });
 
-
+document.getElementById('goToScoreboardButton').addEventListener('click', function() {
+      window.location.href = 'scoreboard.html';
+  });
 
 });

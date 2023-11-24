@@ -7,13 +7,13 @@
 <body>
     <div id="teams-container">
         <div class="team">
-          <h2>Team 1 (Red)</h2>
+          <h2>Team 1 (Red) - Total Goals: <span id="team1TotalGoals">0</span></h2>
           <ul id="team1-list">
             <!-- JavaScript will populate this list -->
           </ul>
         </div>
         <div class="team">
-          <h2>Team 2 (Yellow)</h2>
+          <h2>Team 2 (Yellow) - Total Goals: <span id="team2TotalGoals"> 0 </span></h2>
           <ul id="team2-list">
             <!-- JavaScript will populate this list -->
           </ul>
@@ -21,6 +21,9 @@
     </div>
     <div>
         <button id="endMatchButton">END & SAVE MATCH</button>
+    </div>
+    <div>
+        <button id="goToScoreboardButton">&#8594; Go Directly to scoreboard without saving match</button>
     </div>
     <footer class="footer">
         <button id="backButton" class="back-btn">&#8592; Back</button>
