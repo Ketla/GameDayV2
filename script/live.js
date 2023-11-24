@@ -38,7 +38,7 @@ function shuffleArray(array) {
 function randomizeTeams(activePlayers, teamSize) {
   // Shuffle players to randomize the order
   shuffleArray(activePlayers);
-  
+
   // Sort players by the number of matches they have played (ascending order)
   const playersSortedByMatches = activePlayers.sort((a, b) => a.matchesPlayed - b.matchesPlayed);
 
@@ -51,23 +51,24 @@ function randomizeTeams(activePlayers, teamSize) {
 
   let team1 = [], team2 = [];
   let team1Score = 0, team2Score = 0;
-  let goalieAssigned = false; // Track if a goalie has been assigned
+  let goalies = playersByScore.filter(player => player.goalie);
 
-  playersByScore.forEach(player => {
-    let playerScore = calculatePlayerScore(player);
-
-    // Check for goalies and ensure they are on different teams
-    if (player.goalie) {
-      if (!goalieAssigned) {
-        team1.push(player);
-        team1Score += playerScore;
-        goalieAssigned = true;
-      } else {
-        team2.push(player);
-        team2Score += playerScore;
-      }
+  // Distribute goalies first
+  goalies.forEach(goalie => {
+    let goalieScore = calculatePlayerScore(goalie);
+    if ((team1.length < teamSize && team1Score <= team2Score) || team2.length === teamSize) {
+      team1.push(goalie);
+      team1Score += goalieScore;
     } else {
-      // Assign non-goalie players
+      team2.push(goalie);
+      team2Score += goalieScore;
+    }
+  });
+
+  // Assign non-goalie players
+  playersByScore.forEach(player => {
+    if (!player.goalie) {
+      let playerScore = calculatePlayerScore(player);
       if ((team1.length < teamSize && team1Score <= team2Score) || team2.length === teamSize) {
         team1.push(player);
         team1Score += playerScore;
@@ -80,6 +81,7 @@ function randomizeTeams(activePlayers, teamSize) {
 
   return { team1, team2 };
 }
+
 
 
 // Function to display teams

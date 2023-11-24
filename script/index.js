@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const playerName = document.getElementById('playerName').value;
       const eloRating = 1000; // Fixed ELO rating
 
+          // Check if player name already exists
+    const nameExists = players.some(player => player.name.toLowerCase() === playerName.toLowerCase());
+
+    if (nameExists) {
+        alert('A player with this name already exists. Please use a different name.');
+        return; // Stop the function if name exists
+    }
+
       const newId = generateUniquePlayerId();
 
       // Create a new player object
@@ -126,12 +134,9 @@ if (localStorage.getItem('buttonText')) {
 
 startGameButton.addEventListener('click', function() {
     // Count the number of players who are goalies
-    const numberOfGoalies = players.filter(player => player.goalie === true).length;
 
     if (players.length < 2) {
         alert('You need at least 2 players to start the game.');
-    } else if (numberOfGoalies >= 3) {
-        alert('The game cannot start with more than 2 goalies.');
     } else {
         this.textContent = 'Continue Game';
         localStorage.setItem('buttonText', 'Continue Game'); // Save the new button text to localStorage
@@ -152,6 +157,8 @@ clearLocalStorageButton.addEventListener('click', () => {
         localStorage.removeItem('team1');
         localStorage.removeItem('team2');
         localStorage.removeItem('matchFormat'); 
+        localStorage.removeItem('team1Goals'); 
+        localStorage.removeItem('team2Goals'); 
         playerList.innerHTML = "";
         location.reload();
     } 
